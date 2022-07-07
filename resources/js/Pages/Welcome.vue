@@ -45,7 +45,9 @@ const contacts = ref([
     <Head title="Welcome" />
 
     <main>
-        <section class="min-h-screen w-full grid place-content-center gap-12">
+        <section
+            class="min-h-screen w-full grid place-content-center gap-4 sm:gap-12"
+        >
             <welcome-hero></welcome-hero>
 
             <register-form></register-form>
