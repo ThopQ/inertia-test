@@ -22,7 +22,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/impressum', function () {
-    return Inertia::render('Impressum');
+    return Inertia::render('Welcome', ['impressumModal' => true]);
 })->name('impressum');
 
 Route::post('/members', function (Request $request) {
