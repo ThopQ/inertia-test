@@ -42,7 +42,7 @@ const contacts = ref([
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="❤️lich Willkommen" />
 
     <main>
         <section
