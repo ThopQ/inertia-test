@@ -8,7 +8,11 @@ import { XIcon } from "@heroicons/vue/outline";
 const modal = ref(null);
 
 onClickOutside(modal, () => {
-    Inertia.get(route("welcome"), {}, { preserveState: true });
+    Inertia.get(
+        route("welcome"),
+        {},
+        { preserveState: true, preserveScroll: true }
+    );
 });
 </script>
 
@@ -25,6 +29,7 @@ onClickOutside(modal, () => {
                         :href="route('welcome')"
                         class="btn btn-ghost"
                         preserve-state
+                        preserve-scroll
                     >
                         <XIcon class="h-6 w-6 stroke-current"></XIcon>
                     </Link>
