@@ -42,11 +42,11 @@ const contacts = ref([
 </script>
 
 <template>
-    <Head title="❤️lich Willkommen" />
+    <Head title="❤️-lich Willkommen" />
 
     <main>
         <section
-            class="min-h-screen w-full grid place-content-center gap-4 sm:gap-12"
+            class="min-h-screen w-full flex flex-col sm:grid sm:place-content-center pt-12 sm:pt-0 gap-4 sm:gap-12"
         >
             <welcome-hero></welcome-hero>
 
