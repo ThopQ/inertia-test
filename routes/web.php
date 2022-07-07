@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreMemberRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MemberRegistered;
 use Inertia\Inertia;
 
 use App\Models\Member;
@@ -25,10 +27,9 @@ Route::get('/impressum', function () {
     return Inertia::render('Welcome', ['impressumModal' => true]);
 })->name('impressum');
 
-Route::post('/members', function (Request $request) {
-    Member::create([
-        'email' => $request->email
-    ]);
+Route::post('/members', function (StoreMemberRequest $request) {
+    Member::create($request->validated());
+    Mail::to($request->validated()['email'])->send(new MemberRegistered);
 
     return back();
 })->name('members.store');
