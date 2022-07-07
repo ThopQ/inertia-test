@@ -33,7 +33,11 @@ import { Link } from "@inertiajs/inertia-vue3";
         </div>
         <div>
             <span class="footer-title">Otaku-Point</span>
-            <Link :href="route('impressum')" class="link link-hover">
+            <Link
+                :href="route('impressum')"
+                class="link link-hover"
+                preserve-state
+            >
                 Impressum
             </Link>
             <a href="mailto:info@otaku-point.ch" class="link link-hover">
