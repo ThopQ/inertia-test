@@ -18,8 +18,12 @@ use App\Models\Member;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', ['members' => Member::all()]);
+    return Inertia::render('Welcome');
 })->name('welcome');
+
+Route::get('/impressum', function () {
+    return Inertia::render('Impressum');
+})->name('impressum');
 
 Route::post('/members', function (Request $request) {
     Member::create([
