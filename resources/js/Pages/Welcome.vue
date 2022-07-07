@@ -1,29 +1,100 @@
 <script setup>
-import { Head, useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
+import { Head } from "@inertiajs/inertia-vue3";
+import WelcomeHero from "@/Components/Otaku-Point/WelcomeHero.vue";
+import WelcomeDescription from "@/Components/Otaku-Point/WelcomeDescription.vue";
+import WelcomeFooter from "@/Components/Otaku-Point/WelcomeFooter.vue";
+import RegisterForm from "@/Components/Otaku-Point/RegisterForm.vue";
+import ContactCard from "@/Components/Otaku-Point/ContactCard.vue";
+import ImpressumModal from "@/Components/Otaku-Point/ImpressumModal.vue";
+import { ChevronDownIcon } from "@heroicons/vue/outline";
 
-defineProps({ members: Array });
-
-const form = useForm({
-    email: null,
+defineProps({
+    impressumModal: Boolean,
 });
+
+const contacts = ref([
+    {
+        name: "Thomas Iseli",
+        age: 23,
+        imageSrc: "/media/thomas-iseli.jpg",
+        job: "Informatiker EFZ",
+        favManga: "Berserk",
+        favAnime: "Kimi no Na wa",
+        hobbies: ["Anime/Manga 🍥", "Lesen 📖", "Klavier 🎹", "Code 👨🏻‍💻"],
+    },
+    {
+        name: "Kevin Kölliker",
+        age: 31,
+        job: "Application Engineer",
+        imageSrc: "/media/kevin-koelliker.jpg",
+        favManga: "One Piece",
+        favAnime: "Demon Slayer",
+        hobbies: [
+            "Anime/Manga 🎌",
+            "Fussball ⚽",
+            "Euphonium im Orchester 🎶",
+            "Skifahren ⛷️",
+            "Tauchen 🐟",
+        ],
+    },
+]);
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Otaku-Point" />
 
-    <div class="h-screen w-screen grid place-content-center">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                {{ form.email }}
-                <form @submit.prevent="form.post(route('members.store'))">
-                    <input v-model="form.email" type="email" />
-                    <button type="submit">Senden</button>
-                </form>
+    <main>
+        <section class="min-h-screen w-full grid place-content-center gap-12">
+            <welcome-hero></welcome-hero>
 
-                <p v-for="member in members" :key="member.id">
-                    {{ member.email }}
-                </p>
+            <register-form></register-form>
+
+            <div class="absolute bottom-5 w-full text-center">
+                <a href="#contact" class="btn btn-ghost animate-bounce">
+                    <ChevronDownIcon
+                        class="h-6 w-6 stroke-current"
+                    ></ChevronDownIcon>
+                </a>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section
+            class="min-h-screen w-full grid place-content-center"
+            id="contact"
+        >
+            <div
+                class="container flex flex-col lg:flex-row gap-12 pt-12 lg:pt-0"
+            >
+                <contact-card
+                    v-for="(contact, index) in contacts"
+                    :key="index"
+                    :contact="contact"
+                ></contact-card>
+            </div>
+
+            <welcome-description></welcome-description>
+        </section>
+    </main>
+
+    <welcome-footer></welcome-footer>
+    <Transition name="slide-fade">
+        <impressum-modal
+            v-if="impressumModal"
+            :is-open="impressumModal"
+        ></impressum-modal
+    ></Transition>
 </template>
+
+<style scoped>
+.slide-fade-leave-active,
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+}
+</style>
