@@ -27,7 +27,6 @@ function submit() {
                 <div class="flex flex-row justify-center gap-4">
                     <div class="form-control w-full max-w-xs">
                         <input
-                            disabled
                             required
                             v-model="form.email"
                             type="email"
@@ -46,7 +45,7 @@ function submit() {
 
                     <button
                         type="submit"
-                        disabled
+                        :disabled="form.processing"
                         class="btn btn-primary"
                         :class="[form.processing ? 'loading' : '']"
                     >
