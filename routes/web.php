@@ -18,7 +18,7 @@ use App\Models\Member;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return Inertia::render('Welcome', ['members' => Member::all()]);
 })->name('welcome');
 
 Route::post('/members', function (Request $request) {

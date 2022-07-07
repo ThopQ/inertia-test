@@ -1,6 +1,8 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/inertia-vue3";
 
+defineProps({ members: Array });
+
 const form = useForm({
     email: null,
 });
@@ -16,6 +18,8 @@ const form = useForm({
                 <input v-model="form.email" type="email" />
                 <button type="submit">Senden</button>
             </form>
+
+            <p v-for="member in members" :key="member.id">{{ member.email }}</p>
         </div>
     </div>
 </template>
