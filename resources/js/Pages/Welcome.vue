@@ -42,7 +42,7 @@ const contacts = ref([
 </script>
 
 <template>
-    <Head title="Otaku-Point" />
+    <Head title="Welcome" />
 
     <main>
         <section class="min-h-screen w-full grid place-content-center gap-12">
