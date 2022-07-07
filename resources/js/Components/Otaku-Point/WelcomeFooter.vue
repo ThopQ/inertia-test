@@ -37,6 +37,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                 :href="route('impressum')"
                 class="link link-hover"
                 preserve-state
+                preserve-scroll
             >
                 Impressum
             </Link>
